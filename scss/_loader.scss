@@ -1,0 +1,84 @@
+$loader-color : #354a60;
+$loader-border : 1vw;
+
+.with-loader {
+    overflow: hidden;
+}
+
+.loader {
+    background-color: $loader-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    @include tr;
+    .with-loader & {
+        opacity: 1;
+    }
+    &__outer {
+        width: 30%;
+        padding-top: 30%;
+        border: $loader-border solid #fff;
+        border-radius: 50%;
+        box-sizing: content-box;
+        @include pCenter;
+        overflow: hidden;
+        
+    }
+    &__inner {
+        width: 100%;
+        height: 100%;
+        border: $loader-border solid $loader-color;
+        background-color: #fff;
+        border-radius: 50%;
+        @include pCenter;
+    }
+    &__group {
+        @include pCenter;
+        width: 100%;
+        height: 100%;
+        top: 5%;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        transform-origin: 0 0;
+        .with-loader & {
+            animation-name: rotate;
+        }
+    }
+    &__item {
+        background-color: $loader-color;
+        width: 120%;
+        padding-top: 120%;
+        border-radius: 50%;
+        @include pCenter;
+        &:nth-child(1) {
+            left: 40%;
+        }
+        &:nth-child(2) {
+            left: 60%;
+            top: 35%;
+        }
+        &:nth-child(3)
+        {
+            left: 40%;
+            top: 40%;
+        }
+        &:nth-child(4) {
+            top: 50%;
+            left: 60%;
+        }
+    }
+
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0) translate(-50%, -50%);
+    }
+    to {
+        transform: rotate(360deg) translate(-50%, -50%);
+    }
+}

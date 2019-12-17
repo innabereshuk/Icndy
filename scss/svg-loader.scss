@@ -1,0 +1,57 @@
+@import 'mixins';
+
+$loader-primary : #354a60;
+$loader-secondary : #fff;
+
+.with-loader {
+    overflow: hidden;
+}
+
+.loader {
+    background-color: $loader-primary;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    @include tr;
+    .with-loader & {
+        opacity: 1;
+    }
+    &__svg {
+        @include pCenter;
+        width: 30vw;
+        
+    }
+    &__outer {
+        fill: transparent;
+        stroke: $loader-secondary;
+    }
+    &__inner {
+        fill: $loader-secondary;
+        stroke: $loader-primary;
+    }
+    &__group {
+        transform-origin: 50% 0;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        .with-loader & {
+            animation-name: rotate;
+        }
+    }
+    &__item {
+        fill: $loader-primary;
+    }
+
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0) translate(-5%, -35%);
+    }
+    to {
+        transform: rotate(360deg) translate(-5%,-35%);
+    }
+}
